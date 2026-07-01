@@ -27,7 +27,7 @@
                 "terminal.integrated.fontSize": 11,
                 "editor.wordWrap": "on"
             }
-        } // <-- Yahan se extra comma hata diya gaya hai
+        }
     }
 
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
