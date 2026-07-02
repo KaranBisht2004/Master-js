@@ -10,8 +10,8 @@ console.log(Math.ceil(5.1));  // 6 (Always rounds UP)
 console.log(Math.floor(5.9)); // 5 (Always rounds DOWN)
 
 // Finding Min and Max values
-console.log(Math.min(5, 2, 1, 51)); // 1
-console.log(Math.max(5, 2, 1, 51)); // 51
+console.log(Math.min(6, 2, 1, 51)); // 1
+console.log(Math.max(6, 2, 1, 51)); // 51
 
 
 // ==========================================
@@ -26,6 +26,7 @@ console.log(Math.floor(Math.random() * 10));
 
 // Dice roll simulation (1 to 6)
 console.log(Math.floor((Math.random() * 6) + 1));
+
 
 
 // ==========================================
