@@ -76,8 +76,8 @@ console.log(file.endsWith(".png"));   // Output: false
 
 
 
-let emoji = "A";
-console.log(emoji.repeat(5)); // Output: AAAAA
+let abc = "ABC";
+console.log(abc.repeat(5)); // Output: ABCABCABCABCABCABC
 
 
 
