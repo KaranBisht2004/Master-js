@@ -111,3 +111,12 @@ let arrNUM1 = [1, 2, 3, [4, 5, 6, [7, 8], 9, 10], 11, 12];
 console.log(arrNUM1.flat());//[ 1, 2, 3, 4, 5, 6, [ 7, 8 ], 9, 10, 11, 12 ]
 console.log(arrNUM1.flat(Infinity));//[1,  2, 3, 4,  5,6,  7, 8, 9, 10,11, 12]
 
+
+// changeing into Arry
+
+let games = "valorant"
+console.log(Array.isArray(games));//false 
+console.log(Array.from(games));//['v', 'a', 'l','o', 'r', 'a','n', 't']
+console.log(Array.of(games));//[ 'valorant' ]
+
+
