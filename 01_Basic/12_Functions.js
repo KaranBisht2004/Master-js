@@ -129,3 +129,26 @@ const modernArrFunction = ([firstElement, secondElement]) => {// ---> 3 way
     console.log(`Pehla element hai ${firstElement} aur doosra hai ${secondElement}`);
 };
 modernArrFunction(myArr);
+
+
+
+// ========================= Immediately Invoked Function Expression (IIFE) Funtion ===============================
+
+(function (){
+    console.log("hello this is Immediately Invoked Function Expression (IIFE) Funtion");
+})();// <- Yeh jo last me () hai, iska matlab hai "Abhi ke abhi chalo!"
+
+
+// 2. Arrow Function IIFE 
+(() => {
+    console.log("Hello this arrow IIFE function");
+})();
+
+
+// 3. IIFE ke andar Parameters aur Arguments bhejna
+((username) => {
+    console.log(`Welcome back, ${username}`);
+})("karan");
+
+
+// Agar aap ek ke baad ek do IIFE likh rahe ho, toh pehle IIFE ke khatam hone par SEMICOLON (;) lagana compulsory hai!
