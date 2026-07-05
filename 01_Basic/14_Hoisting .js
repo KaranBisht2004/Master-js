@@ -79,14 +79,17 @@ var testArrow = () => {
 
 
 // Question 1: The var Trick
-// JavaScript
-// var x = 10;
-// function test() {
-//     console.log(x); 
-//     var x = 20;
-// }
-// test();
-// // Output kya aayega? (10, 20, undefined, ya Error)
+
+var x = 10;
+function test() {
+    console.log(x); 
+    var x = 20;
+}
+test();// undefined 
+
+
+
+
 // Question 2: Arrow Function Hoisting
 // JavaScript
 // myFunc();
