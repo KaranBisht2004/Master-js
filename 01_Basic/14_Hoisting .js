@@ -91,12 +91,17 @@ test();// undefined
 
 
 // Question 2: Arrow Function Hoisting
-// JavaScript
-// myFunc();
 
-// var myFunc = () => {
-//     console.log("Hello");
-// };
+myFunc();
+
+var myFunc = () => {
+    console.log("Hello");
+};//error
+
+
+
+
+
 // // Output kya aayega? ("Hello", undefined, ya Error)
 // Question 3: Let vs Var in TDZ
 // JavaScript
