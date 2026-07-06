@@ -39,7 +39,7 @@ console.log(finalScoreNullish); // Output: 0  (Ekdum sahi! Kyunki 0 null ya unde
 
 
 
-// ⚠️ 3. Syntax Error Rule (Kiske sath use nahi kar sakte?)
+// 3. Syntax Error Rule (Kiske sath use nahi kar sakte?)
 
 // Tum direct `??` ko `&&` ya `||` ke sath bina brackets ke mix nahi kar sakte. 
 // Aisa karne par JavaScript confuse ho jata hai aur Error deta hai.
