@@ -148,3 +148,11 @@ switch (code) {
 // []
 // {}
 // function (){}
+
+
+
+console.log(false == 0);//true
+
+console.log(false == "");//true
+
+console.log(0 == '');//true
