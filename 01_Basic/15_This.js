@@ -76,8 +76,6 @@ console.log(this) // VM121:1 Window {window: Window, self: Window, document: do
 
 
 
-
-
 //QUICK SUMMARY CHEAT SHEET FOR INTERVIEWS
 // ---------------------------------------------------------------------------------
 // 1. Khule mein (Global)         -> window (Browser) ya {} (Node.js)
