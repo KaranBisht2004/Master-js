@@ -22,7 +22,7 @@ const codingLang = [
 
 // Maan lo hume sirf wo languages chahiye jo Backend me use hoti hain:
 const backendLang = codingLang.filter((lang) => {
-    return lang.type.includes("Backend"); 
+    return lang.type.includes("Backend");
 });
 
 console.log(backendLang);
@@ -50,3 +50,76 @@ console.log(proLang); // Output: [] (Empty Array)
 // 2. Pure Method: Asli array me koi badlav (mutation) nahi karta.
 // 3. Callback Expectations: Iske callback function se hamesha ek boolean value (true/false) return honi chahiye.
 
+
+
+
+
+
+
+
+const books = [
+    {
+        title: "The Hobbit",
+        genre: "Fantasy",
+        edition: 2012,
+        published: 1937
+    },
+    {
+        title: "A Brief History of Time",
+        genre: "Science",
+        edition: 1998,
+        published: 1988
+    },
+    {
+        title: "Atomic Habits",
+        genre: "Self-Help",
+        edition: 2018,
+        published: 2018
+    },
+    {
+        title: "To Kill a Mockingbird",
+        genre: "Fiction",
+        edition: 2006,
+        published: 1960
+    },
+    {
+        title: "Sapiens: A Brief History of Humankind",
+        genre: "History",
+        edition: 2015,
+        published: 2011
+    },
+    {
+        title: "Dune",
+        genre: "Sci-Fi",
+        edition: 2019,
+        published: 1965
+    },
+    {
+        title: "The Silent Patient",
+        genre: "Thriller",
+        edition: 2019,
+        published: 2019
+    },
+    {
+        title: "Deep Work",
+        genre: "Self-Help",
+        edition: 2016,
+        published: 2016
+    }
+];
+
+const SelfHelpBooks = books.filter( bookGenre => bookGenre.genre === "Self-Help")
+console.log(SelfHelpBooks);
+
+const comparison = books.filter(booksComparison => booksComparison.published < 2000)
+console.log(comparison);
+
+const Conditions = books.filter ( book => (book.genre === "Sci-Fi" || book.genre === "Science") && book.edition > 2010 )
+console.log(Conditions);
+
+const Search = books.filter(history => history.title.includes("History"))
+console.log(Search);
+
+const allGenres = books.map(book => book.genre);
+const uniqueGenres = [...new Set(allGenres)];
+console.log(uniqueGenres);
