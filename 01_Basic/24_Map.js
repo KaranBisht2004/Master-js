@@ -30,7 +30,7 @@ console.log(langNames); //  Output: ["JavaScript", "Python", "Java"]
 // 3. return likhna bhool gaye toh?
 
 // "Agar map ke andar tum kuch return na karo, toh naye array me kya milega?"
-// Jawab hai: `undefined` ka array! ❌ Map me 'return' likhna compulsory hai.
+// Jawab hai: `undefined` ka array!  Map me 'return' likhna compulsory hai.
 
 const trapArray = numbers.map((num) => {
     num * 2; // Galti: return nahi likha!
