@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Notes</title>
+    <style>
+        body {
+            background-color: #333333;
+            color: antiquewhite;
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .parent {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+
+        .month {
+            background: #444444;
+            color: antiquewhite;
+            text-align: center;
+            padding: 15px 10px;
+            font-weight: 600;
+            border-radius: 8px;
+            border: 1px solid #555555;
+            transition: all 0.3s ease;
+        }
+
+        .new-added {
+            background: #007bff;
+            color: white;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>DOM Notes: Creating & Selecting Elements</h1>
+    
+  
+    <div class="parent">
+        <div class="month">January</div>
+        <div class="month">February</div>
+        <div class="month">March</div>
+        <div class="month">April</div>
+        <div class="month">May</div>
+        <div class="month">June</div>
+        <div class="month">July</div>
+        <div class="month">August</div>
+        <div class="month">September</div>
+        <div class="month">October</div>
+        <div class="month">November</div>
+        <div class="month">December</div>
+    </div>
+
+    <script>
+        
+        // 1. SELECTING ELEMENTS & NODES
+ 
+        
+        // Single element select karna
+        let parent = document.querySelector('.parent');
+        console.log("Parent Element:", parent);
+
+        // HTMLCollection (Saare bachon ki list) nikalna
+        console.log("All Children:", parent.children);
+
+        // Kisi ek specific index wale child ko access karna (Index 0 se start hota hai)
+        console.log("6th Month (June):", parent.children[5].innerHTML);
+
+
+       
+        // 2. LOOPING THROUGH CHILDREN & STYLING
+      
+        // Ek single element par style directly lagti hai
+        parent.children[5].style.fontWeight = "bold"; 
+
+        // Poori list par style lagane ke liye loop chalana padta hai
+        for (let i = 0; i < parent.children.length; i++) {
+            // Agar sabhi ko red karna ho:
+            // parent.children[i].style.color = "red";
+        }
+
+
+        // 3. CREATING AND ADDING NEW ELEMENTS 
+      
+        
+        // Step A: Naya element create kiya (Abhi ye memory me hai)
+        let newMonth = document.createElement('div');
+
+        // Step B: Element ko Style diya (Text, Class aur Style add ki)
+        newMonth.innerText = "Undecimber (New)"; 
+        newMonth.classList.add('month', 'new-added'); // CSS classes laga di
+
+        // Step C: Parent ke andar daal kar screen par render kiya
+        
+        // 1: Sabse aakhiri me add karne ke liye (Append)
+        parent.appendChild(newMonth);
+
+        // 2: Agar sabse pehle (top par) add karna ho:
+        // parent.prepend(newMonth);
+
+    </script>
+</body>
+</html>
