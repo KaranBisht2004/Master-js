@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <style>
+        body {
+            background-color: rgb(34, 34, 34);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="heading" onclick="changeHeading()">Hello I am learning events in JavaScript</h1>
+
+    <div id="grandP"
+        style="height: 300px; width: 300px; background-color: crimson; display: flex; justify-content: center; align-items: center; border-radius: 100%;">
+
+        <div id="perant"
+            style="height: 200px; width: 200px; background-color: rgba(146, 255, 100, 0.695); display: flex; justify-content: center; align-items: center; border-radius: 100%;">
+
+            <div id="child"
+                style="height: 100px; width: 100px; background-color: rgb(169, 70, 255); display: flex; justify-content: center; align-items: center;border-radius: 100%;">
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        let heading = document.getElementById("heading");
+
+
+        heading.addEventListener("click", () => {
+            if (heading.textContent === 'Hello I am learning events in JavaScript') {
+                heading.textContent = "I changed this heading using addEventListener";
+            } else {
+                heading.textContent = 'Hello I am learning events in JavaScript';
+            }
+        });
+
+
+        //  2. THE BIG CONCEPT: EVENT BUBBLING
+        // Jab ek element kisi doosre element ke andar hota hai, aur hum andar wale (child) ko click karte hain,
+        // toh event automatic bahar wale (parents) par bhi trigger hota hai—jaise paani me se gubbara upar aata hai.
+
+        const grandP = document.getElementById("grandP");
+        grandP.addEventListener("click", () => {
+            console.log("grandP is clicked");
+        });
+
+        const perant = document.getElementById("perant");
+        perant.addEventListener("click", () => {
+            console.log("perant is clicked");
+        });
+
+        const child = document.getElementById("child");
+        child.addEventListener("click", (event) => { // 'event' object ko pass kiya
+            console.log(event.timeStamp);
+            console.log("child is clicked");
+
+            //  Bubbling ko ROKNA kaise hai?
+            // "Mujhe sirf child click chahiye, baki parent click nahi hone chahiye!"
+            // Toh tum use karoge: event.stopPropagation()
+            event.stopPropagation(); 
+        });
+
+        // 1. Bubbling Flow: Target Element ➔ Parent ➔ GrandParent ➔ Body ➔ Document (Niche se Upar)
+        // 2. Stop Bubbling: `e.stopPropagation()` lagane se event upar baki ke parents ke paas nahi jata.
+
+// 
+
+        // Mouse Events
+        // element.addEventListener('click', (e) => console.log('Clicked'));
+        // element.addEventListener('dblclick', (e) => console.log('Double clicked'));
+        // element.addEventListener('mousedown', (e) => console.log('Mouse down'));
+        // element.addEventListener('mouseup', (e) => console.log('Mouse up'));
+        // element.addEventListener('mousemove', (e) => console.log('Mouse moving'));
+        // element.addEventListener('mouseenter', (e) => console.log('Mouse entered'));
+        // element.addEventListener('mouseleave', (e) => console.log('Mouse left'));
+
+
+        // Keyboard Events
+        // document.addEventListener('keydown', (e) => {
+        //     console.log('Key pressed:', e.key);
+        //     console.log('Key code:', e.code);
+        //     console.log('Ctrl pressed:', e.ctrlKey);
+        //     console.log('Shift pressed:', e.shiftKey);
+        //     console.log('Alt pressed:', e.altKey);
+        // });
+        // document.addEventListener('keyup', (e) => console.log('Key released'));
+        // document.addEventListener('keypress', (e) => console.log('Key press')); // Deprecated
+
+
+        // Window Events
+        // window.addEventListener('load', () => console.log('Page fully loaded'));
+        // window.addEventListener('DOMContentLoaded', () => console.log('DOM ready'));
+        // window.addEventListener('resize', () => console.log('Window resized'));
+        // window.addEventListener('scroll', () => console.log('Page scrolled'));
+
+
+        // Form Events
+        // const input = document.querySelector('input');
+        // const form = document.querySelector('form');
+
+        // input.addEventListener('focus', () => console.log('Input focused'));
+        // input.addEventListener('blur', () => console.log('Input blurred'));
+        // input.addEventListener('input', (e) => console.log('Input value:', e.target.value));
+        // input.addEventListener('change', (e) => console.log('Changed:', e.target.value));
+
+        // form.addEventListener('submit', (e) => {
+        //     e.preventDefault(); // Prevent form submission
+        //     console.log('Form submitted');
+        // });
+
+
+
+        
+    </script>
+</body>
+
+</html>
