@@ -19,8 +19,7 @@
 }
  
 body {
-    background: linear-gradient(160deg, var(--cream) 0%, var(--blush) 100%);
-    font-family: 'Poppins', sans-serif;
+background: radial-gradient(circle at 50% 50%, #fee2e2 0%, #fecdd3 50%, #fda4af 100%);    font-family: 'Poppins', sans-serif;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -29,10 +28,34 @@ body {
     text-align: center;
     padding: 24px;
 }
- 
+ body::before, body::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    filter: blur(40px);
+    z-index: 0;
+    animation: floatBg 8s infinite alternate ease-in-out;
+}
+
+body::after {
+    background: rgba(244, 63, 94, 0.15);
+    animation-delay: -4s;
+    width: 400px;
+    height: 400px;
+}
+
+@keyframes floatBg {
+    0% { transform: translate(-100px, -50px) scale(1); }
+    100% { transform: translate(100px, 50px) scale(1.2); }
+}
 
 #mainDIV {
-    background: linear-gradient(150deg, var(--rose) 0%, var(--rose-deep) 100%);
+    background: linear-gradient(150deg, var(--rose) 0%, var(--rose-deep) 140%);
+    position: relative;
+    z-index: 1;
     padding: 44px 36px;
     border-radius: var(--radius-lg);
     max-width: 440px;
