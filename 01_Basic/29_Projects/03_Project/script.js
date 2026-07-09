@@ -23,7 +23,7 @@ calculator.addEventListener("click", () => {
     if (name1Value === "" || name2Value === "") {
         yourScore.textContent = `Pehle bandi/banda toh bana le!`;
         meterFill.style.width = `0%`;
-        return; // Code ko aage badhne se rok do
+        return; 
     }
 
 
@@ -41,4 +41,5 @@ calculator.addEventListener("click", () => {
     yourScore.textContent = `${calculatorLove}%`;
     meterFill.style.width = `${calculatorLove}%`;
 
+    
 })
