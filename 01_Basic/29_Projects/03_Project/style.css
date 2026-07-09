@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+:root {
+    --cream: #F8ECE3;
+    --cream-soft: #FBEFE6;
+    --blush: #F6D6D9;
+    --rose: #EA7480;
+    --rose-deep: #B93A52;
+    --crimson: #C60726;
+    --crimson-bright: #E0122F;
+    --text-dark: #4A2230;
+    --input-bg: #FFF8F3;
+    --radius-lg: 28px;
+    --radius-sm: 12px;
+}
+ 
+body {
+    background: linear-gradient(160deg, var(--cream) 0%, var(--blush) 100%);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    text-align: center;
+    padding: 24px;
+}
+ 
+
+#mainDIV {
+    background: linear-gradient(150deg, var(--rose) 0%, var(--rose-deep) 100%);
+    padding: 44px 36px;
+    border-radius: var(--radius-lg);
+    max-width: 440px;
+    width: 100%;
+    box-shadow:
+        0 30px 60px -20px rgba(185, 58, 82, 0.45),
+        0 12px 24px -12px rgba(0, 0, 0, 0.15);
+    animation: cardIn 0.6s ease-out;
+}
+ 
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+ 
+h1 {
+    font-family: "Love Ya Like A Sister", cursive;
+    font-weight: 400;
+    font-size: clamp(34px, 8vw, 50px);
+    font-style: normal;
+    color: var(--cream-soft);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    line-height: 1.1;
+}
+ 
+.subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--cream-soft);
+    opacity: 0.85;
+    margin-top: 8px;
+}
+ 
+#inputDIV {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 45px;
+    margin: 32px 0;
+}
+ 
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+ 
+.input-group label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--cream-soft);
+    opacity: 0.85;
+}
+ 
+.input-group input {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    width: 150px;
+    padding: 13px 14px;
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    background: var(--input-bg);
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+ 
+.input-group input::placeholder {
+    color: #C79C90;
+}
+ 
+.input-group input:focus {
+    border-color: var(--crimson);
+    box-shadow: 0 0 0 4px rgba(198, 7, 38, 0.18);
+    transform: translateY(-2px);
+}
+ 
+ 
+#calculator {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    background: var(--crimson);
+    color: var(--cream-soft);
+    padding: 14px 34px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 12px 24px -8px rgba(198, 7, 38, 0.55);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+ 
+#calculator svg {
+    fill: currentColor;
+}
+ 
+#calculator:hover {
+    background: var(--crimson-bright);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 30px -8px rgba(198, 7, 38, 0.6);
+}
+ 
+#calculator:active {
+    transform: translateY(-1px) scale(0.98);
+}
+ 
+#calculator:focus-visible {
+    outline: 2px solid var(--cream-soft);
+    outline-offset: 3px;
+}
+ 
+#resultSection {
+    margin-top: 34px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(251, 239, 230, 0.25);
+}
+ 
+.result-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--cream-soft);
+    opacity: 0.8;
+    margin-bottom: 14px;
+}
+ 
+.meter-track {
+    width: 100%;
+    height: 10px;
+    background: rgba(251, 239, 230, 0.25);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+ 
+#meterFill {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--blush), var(--crimson));
+    border-radius: 20px;
+    transition: width 0.8s ease;
+}
+ 
+#yourScore {
+    font-family: "Love Ya Like A Sister", cursive;
+    font-weight: 400;
+    font-size: 32px;
+    font-style: normal;
+    color: var(--cream-soft);
+    word-wrap: break-word;
+}
+ 
+@media (max-width: 480px) {
+    #mainDIV {
+        padding: 32px 24px;
+    }
+ 
+    #inputDIV {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+    }
+ 
+    .input-group {
+        width: 100%;
+        align-items: center;
+    }
+ 
+    .input-group input {
+        width: 100%;
+    }
+ 
+    .heart-connector {
+        margin-bottom: 0;
+        transform: rotate(90deg);
+    }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+ 
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
