@@ -1,0 +1,287 @@
+
+ 
+:root {
+    /* Color */
+    --color-bg: #1F3D35;
+    --color-paper: #F5F1E4;
+    --color-paper-line: #E1DAC3;
+    --color-ink: #202D22;
+    --color-ink-soft: #5E6B5C;
+    --color-brass: #AB8339;
+    --color-brass-bright: #E0B36A;
+ 
+    --color-oxblood: #9C3D30;
+ 
+    /* Type */
+    --font-serif: 'IBM Plex Serif', Georgia, serif;
+    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+ 
+    /* Shape */
+    --radius-card: 14px;
+    --radius-control: 8px;
+ 
+    /* Shadow */
+    --shadow-card: 0 40px 70px -30px rgba(8, 16, 12, 0.55), 0 12px 24px -12px rgba(8, 16, 12, 0.35);
+}
+ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px;
+    background-color: var(--color-bg);
+    background-image:
+        radial-gradient(ellipse 900px 500px at 50% -10%, rgba(255, 255, 255, 0.07), transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: auto, 34px 34px, 34px 34px;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+}
+ 
+.page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+ 
+.ledger-card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background: var(--color-paper);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 56px 40px 40px;
+    animation: cardRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+ 
+.ledger-card__seal {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-paper);
+    border-radius: 50%;
+    color: var(--color-brass);
+    box-shadow: 0 6px 16px rgba(8, 16, 12, 0.35), 0 0 0 1px rgba(171, 131, 57, 0.25);
+}
+ 
+.ledger-card__header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+ 
+.ledger-card__header h1 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(23px, 5vw, 28px);
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin-bottom: 10px;
+}
+ 
+.ledger-card__subtitle {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    max-width: 30ch;
+    margin: 0 auto;
+}
+ 
+.ledger-rule {
+    height: 1px;
+    background: var(--color-paper-line);
+    margin: 0 0 32px;
+}
+ 
+.field {
+    margin-bottom: 28px;
+}
+ 
+.field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+    margin-bottom: 10px;
+}
+ 
+.field__control {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    border-bottom: 2px solid var(--color-paper-line);
+    padding-bottom: 8px;
+    transition: border-color 0.25s ease;
+}
+ 
+.field__control:focus-within {
+    border-color: var(--color-brass);
+}
+ 
+.field__prefix {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    color: var(--color-ink-soft);
+    margin-right: 8px;
+    transition: color 0.25s ease;
+}
+ 
+.field__control:focus-within .field__prefix {
+    color: var(--color-brass);
+}
+ 
+.field__control input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: 20px;
+    color: var(--color-ink);
+}
+ 
+.field__control input::placeholder {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: #A8A492;
+}
+ 
+.field__control input::-webkit-outer-spin-button,
+.field__control input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+ 
+.field__control input[type="number"] {
+    -moz-appearance: textfield;
+}
+ 
+.btn-calculate {
+    width: 100%;
+    padding: 15px 24px;
+    border: none;
+    border-radius: var(--radius-control);
+    background: linear-gradient(180deg, #2C4A40, var(--color-ink));
+    color: var(--color-brass-bright);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow: 0 14px 24px -12px rgba(32, 45, 34, 0.55);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+ 
+.btn-calculate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 28px -12px rgba(32, 45, 34, 0.6);
+    color: #EFC585;
+}
+ 
+.btn-calculate:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 16px -10px rgba(32, 45, 34, 0.5);
+}
+ 
+.btn-calculate:focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+}
+ 
+.tear-line {
+    height: 8px;
+    margin: 36px 0 28px;
+    background-image: radial-gradient(circle, var(--color-paper-line) 2.2px, transparent 2.3px);
+    background-size: 16px 8px;
+    background-repeat: repeat-x;
+    background-position: center;
+}
+ 
+.result {
+    text-align: center;
+}
+ 
+.result__label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+    margin-bottom: 10px;
+}
+ 
+.result__value {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: clamp(30px, 7vw, 38px);
+    color: var(--color-oxblood);
+    font-variant-numeric: tabular-nums;
+}
+ 
+.result__currency {
+    font-size: 0.7em;
+    margin-right: 4px;
+    opacity: 0.85;
+}
+ 
+@keyframes cardRise {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+    .ledger-card {
+        animation: none;
+    }
+ 
+    .btn-calculate,
+    .field__control,
+    .field__prefix {
+        transition: none;
+    }
+}
+ 
+@media (max-width: 480px) {
+    body {
+        padding: 32px 16px;
+    }
+ 
+    .ledger-card {
+        padding: 48px 26px 32px;
+    }
+ 
+    .ledger-card__seal {
+        width: 52px;
+        height: 52px;
+        top: -26px;
+    }
+ 
+    .ledger-card__header h1 {
+        font-size: 22px;
+    }
+}

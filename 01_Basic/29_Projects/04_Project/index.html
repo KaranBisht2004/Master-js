@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="page">
+        <div id="mainDiv" class="ledger-card">
+
+
+
+            <header class="ledger-card__header">
+                <h1>Income Tax Calculator</h1>
+                <p class="ledger-card__subtitle">Enter your annual income to estimate what you owe.</p>
+            </header>
+
+            <div class="ledger-rule" aria-hidden="true"></div>
+
+            <form action="" id="ledger-form">
+                <div class="field">
+                    <label for="income">Annual Income</label>
+                    <div class="field__control">
+                        <span class="field__prefix" aria-hidden="true">₹</span>
+                        <input type="number" id="income" name="income" placeholder="Enter amount" min="0" step="1"
+                            inputmode="numeric" required>
+                    </div>
+                </div>
+
+                <button type="submit" id="calculateBtn" class="btn-calculate">
+                    Calculate Tax
+                </button>
+            </form>
+
+            <div class="tear-line" aria-hidden="true"></div>
+
+            <div class="result">
+                <span class="result__label">Total Tax Payable</span>
+                <div class="result__value">
+                    <span class="result__currency">₹</span><span id="taxResult">0</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
