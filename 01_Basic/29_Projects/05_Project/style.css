@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter",sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff5d2f,#d9481c);
+}
+h2{
+    font-size: 60px;
+}
+.clock-card{
+    width:min(900px,90%);
+    background:#fff;
+    border-radius:25px;
+    padding:50px;
+    box-shadow:0 20px 50px rgba(0,0,0,.18);
+}
+
+#heading{
+    text-align:center;
+    font-size:clamp(70px,12vw,150px);
+    font-weight:800;
+    color:#111;
+    letter-spacing:4px;
+    line-height:1;
+    margin-bottom:40px;
+}
+
+
+
+.bottom-info{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid #e5e5e5;
+    padding-top:25px;
+}
+
+.bottom-info h2{
+    font-size:2rem;
+    color:#111;
+    margin-bottom:8px;
+}
+
+.bottom-info p{
+    color:#666;
+}
+
+.date-box{
+    text-align:right;
+}
+
+#day{
+    font-size:1.2rem;
+    font-weight:600;
+    color:#111;
+}
+
+#date{
+    margin-top:5px;
+    color:#666;
+}
+
+@media (max-width:700px){
+
+    .clock-card{
+        padding:30px;
+    }
+
+    .bottom-info{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .date-box{
+        text-align:left;
+    }
+
+}
