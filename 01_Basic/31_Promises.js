@@ -10,13 +10,13 @@ const orderPizza = new Promise((resolve, reject) => {
 
     setTimeout(() => {
         if (stockAvailable) {
-           
+
             resolve("Mil gaya!  Aapka pizza deliver ho chuka hai.");
         } else {
-            
+
             reject("Oops!  Pizza out of stock hai.");
         }
-    }, 2000); 
+    }, 2000);
 });
 
 // 2. Promise ko consume/use karna
@@ -34,6 +34,12 @@ orderPizza
         console.log("Process khatam! Shukriya.");
     });
 
+
+let firstPromise = new Promise((resolve, reject) => {
+    console.log(`hello`);
+})
+
+console.log(firstPromise);//Promise { <pending> }
 
 
 
@@ -84,21 +90,67 @@ const getUser = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             const user = { name: "Karan", role: "Developer" };
-            
+
             if (user) {
                 resolve(user);
             } else {
                 reject("Data not found");
             }
-            
-        }, 2000); 
+
+        }, 2000);
     });
 };
 
 getUser()
     .then((res) => {
-        console.log(res.name); 
+        console.log(res.name);
     })
     .catch((err) => {
         console.log(err);
+    });
+
+
+
+
+function validateUser(username) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (username === "admin") {
+                resolve(101); 
+            } else {
+                reject("User Unauthorized! ");
+            }
+        }, 1000); 
+    });
+}
+
+function fetchUserData(userId) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (userId === 101) {
+                resolve("Zoro");
+            } else {
+                reject("User ID not found! ");
+            }
+        }, 1500); 
+    });
+}
+
+function showWelcomeMessage(name) {
+    console.log(`Welcome back, ${name}! `);
+}
+
+
+validateUser("admin")
+    .then((userId) => {
+        console.log(`Step 1 Complete: User valid hai, ID mili: ${userId}`);
+        return fetchUserData(userId); 
+    })
+    .then((name) => {
+        console.log(`Step 2 Complete: Data aa gaya, Naam mila: ${name}`);
+        return showWelcomeMessage(name);
+    })
+    .catch((error) => {
+    
+        console.log("Error caught in chain:", error);
     });
