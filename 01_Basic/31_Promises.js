@@ -154,3 +154,57 @@ validateUser("admin")
     
         console.log("Error caught in chain:", error);
     });
+
+
+
+
+
+  
+function unstableNetworkCall() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const isSuccessful = Math.random() > 0.5; 
+            if (isSuccessful) {
+                resolve("Data fetched successfully! ");
+            } else {
+                reject("Network Timeout/Error ");
+            }
+        }, 1000); 
+    });
+}
+
+async function retryMechanism(maxRetries) {
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            console.log(`Attempt ${attempt}: Network call try kar rahe hain...`);
+            
+            const result = await unstableNetworkCall();
+            
+
+            console.log(`Success mil gayi!`);
+            return result; 
+
+        } catch (error) {
+            console.log(`Attempt ${attempt} fail ho gaya: ${error}`);
+            
+
+            if (attempt === maxRetries) {
+                throw new Error(`Saare ${maxRetries} attempts khatam! Network permanent down hai.`);
+            }
+            
+            console.log("Phir se try kar rahe hain...\n");
+        }
+    }
+}
+
+
+console.log("Starting Operations...\n");
+
+retryMechanism(3)
+    .then((finalResult) => {
+        console.log("FINAL STATUS: ", finalResult);
+    })
+    .catch((finalError) => {
+        console.log("FINAL STATUS: ", finalError.message);
+    });
