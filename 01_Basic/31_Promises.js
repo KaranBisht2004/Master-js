@@ -116,11 +116,11 @@ function validateUser(username) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (username === "admin") {
-                resolve(101); 
+                resolve(101);
             } else {
                 reject("User Unauthorized! ");
             }
-        }, 1000); 
+        }, 1000);
     });
 }
 
@@ -132,7 +132,7 @@ function fetchUserData(userId) {
             } else {
                 reject("User ID not found! ");
             }
-        }, 1500); 
+        }, 1500);
     });
 }
 
@@ -144,14 +144,14 @@ function showWelcomeMessage(name) {
 validateUser("admin")
     .then((userId) => {
         console.log(`Step 1 Complete: User valid hai, ID mili: ${userId}`);
-        return fetchUserData(userId); 
+        return fetchUserData(userId);
     })
     .then((name) => {
         console.log(`Step 2 Complete: Data aa gaya, Naam mila: ${name}`);
         return showWelcomeMessage(name);
     })
     .catch((error) => {
-    
+
         console.log("Error caught in chain:", error);
     });
 
@@ -159,17 +159,17 @@ validateUser("admin")
 
 
 
-  
+
 function unstableNetworkCall() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            const isSuccessful = Math.random() > 0.5; 
+            const isSuccessful = Math.random() > 0.5;
             if (isSuccessful) {
                 resolve("Data fetched successfully! ");
             } else {
                 reject("Network Timeout/Error ");
             }
-        }, 1000); 
+        }, 1000);
     });
 }
 
@@ -178,21 +178,21 @@ async function retryMechanism(maxRetries) {
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
             console.log(`Attempt ${attempt}: Network call try kar rahe hain...`);
-            
+
             const result = await unstableNetworkCall();
-            
+
 
             console.log(`Success mil gayi!`);
-            return result; 
+            return result;
 
         } catch (error) {
             console.log(`Attempt ${attempt} fail ho gaya: ${error}`);
-            
+
 
             if (attempt === maxRetries) {
                 throw new Error(`Saare ${maxRetries} attempts khatam! Network permanent down hai.`);
             }
-            
+
             console.log("Phir se try kar rahe hain...\n");
         }
     }
@@ -208,3 +208,27 @@ retryMechanism(3)
     .catch((finalError) => {
         console.log("FINAL STATUS: ", finalError.message);
     });
+
+
+
+
+const processPayment = ((amount) => {
+    return new Promise((resolve, reject) => {
+        if (amount > 0) {
+            setTimeout(() => {
+                return resolve(`Payment of ₹${amount} Successful!`)
+            }, 1000);
+        }
+        else{
+            return reject (`Invalid Amount! Transaction Failed.`)
+        }
+    })
+})
+
+processPayment(100)
+.then((res)=>{
+    console.log(res);
+})
+.catch((err)=>{
+console.log(err );
+})
