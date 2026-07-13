@@ -1,0 +1,197 @@
+:root {
+    --stage-black: #14100E;
+    --curtain-maroon: #3C1220;
+    --spotlight-gold: #F3B62B;
+    --spotlight-gold-soft: #F7D165;
+    --marquee-cream: #F8EFDD;
+    --punch-coral: #FF5F45;
+    --ink: #241A14;
+    --cream-muted: rgba(247, 239, 225, 0.72);
+ 
+    --font-display: 'Alfa Slab One', serif;
+    --font-body: 'Work Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+}
+ 
+* {
+    box-sizing: border-box;
+}
+ 
+html, body {
+    height: 100%;
+}
+ 
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    font-family: var(--font-body);
+    color: var(--marquee-cream);
+    background:
+        radial-gradient(ellipse 640px 420px at 50% 34%, rgba(243, 182, 43, 0.16), transparent 62%),
+        radial-gradient(ellipse 900px 680px at 50% 55%, rgba(60, 18, 32, 0.85), transparent 72%),
+        var(--stage-black);
+}
+ 
+.stage {
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    perspective: 900px;
+}
+ 
+.bulbs {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+ 
+.bulbs span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--spotlight-gold-soft);
+    box-shadow: 0 0 8px 2px rgba(243, 182, 43, 0.7);
+    animation: twinkle 3.2s ease-in-out infinite;
+}
+ 
+.bulbs span:nth-child(2n) { animation-delay: 0.4s; }
+.bulbs span:nth-child(3n) { animation-delay: 0.9s; }
+.bulbs span:nth-child(4) { animation-delay: 1.3s; }
+.bulbs span:nth-child(6) { animation-delay: 1.7s; }
+ 
+@keyframes twinkle {
+    0%, 100% { opacity: 0.45; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1); }
+}
+ 
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--spotlight-gold);
+    margin: 0 0 10px;
+}
+ 
+.headline {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(34px, 8vw, 52px);
+    line-height: 1.02;
+    margin: 0 0 12px;
+    color: var(--marquee-cream);
+    text-shadow: 0 0 24px rgba(243, 182, 43, 0.35);
+}
+ 
+.tagline {
+    font-size: 15px;
+    color: var(--cream-muted);
+    margin: 0 0 32px;
+    max-width: 34ch;
+}
+ 
+.ticket {
+    position: relative;
+    width: 100%;
+    background: var(--marquee-cream);
+    color: var(--ink);
+    border-radius: 14px;
+    padding: 26px 28px 30px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(243, 182, 43, 0.3);
+    transform-style: preserve-3d;
+    margin-bottom: 30px;
+}
+ 
+ 
+
+
+ 
+.tear-line {
+    border-top: 2px dashed rgba(36, 26, 20, 0.18);
+    margin-bottom: 18px;
+}
+ 
+.joke-text {
+    font-size: 17px;
+    line-height: 1.6;
+    white-space: pre-line;
+    min-height: 78px;
+    margin: 0;
+}
+ 
+ 
+.cue-btn {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    background: linear-gradient(120deg, var(--spotlight-gold), var(--punch-coral));
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    box-shadow: 0 14px 28px rgba(255, 95, 69, 0.3);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+ 
+.cue-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 18px 34px rgba(255, 95, 69, 0.4);
+}
+ 
+.cue-btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.97);
+}
+ 
+.cue-btn:focus-visible {
+    outline: 3px solid var(--marquee-cream);
+    outline-offset: 4px;
+}
+ 
+.cue-btn:disabled {
+    cursor: wait;
+    opacity: 0.75;
+}
+ 
+.btn-icon {
+    font-size: 16px;
+}
+ 
+.btn-icon.loading {
+    animation: flicker 0.7s ease-in-out infinite;
+}
+ 
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+ 
+.credit {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: rgba(247, 239, 225, 0.5);
+    margin-top: 15px;
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+    .bulbs span, .ticket.flip, .btn-icon.loading {
+        animation: none !important;
+    }
+}
+ 
+@media (max-width: 420px) {
+    .ticket { padding: 22px 20px 26px; }
+    .cue-btn { padding: 14px 24px; font-size: 14px; }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke Machine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=IBM+Plex+Mono:wght@500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+    <main class="stage">
+        <div class="bulbs" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+ 
+        <p class="eyebrow">Tonight's One-Liner</p>
+        <h1 class="headline">Joke Machine</h1>
+        <p class="tagline">Press the button. A stranger's punchline arrives.</p>
+ 
+        <div class="ticket" id="ticket">
+            <div class="tear-line" aria-hidden="true"></div>
+            <p class="joke-text" id="jokeText">Your joke is queued backstage. Hit the button to bring it out.</p>
+        </div>
+ 
+        <button id="btn" class="cue-btn" type="button">
+            <span class="btn-icon" id="btnIcon">💡</span>
+            <span id="btnLabel">Cue the Joke</span>
+        </button>
+ 
+        <p class="credit">Every tap pulls a fresh joke from the wire.</p>
+    </main>
+ 
+    <script src="script.js"></script>
+</body>
+</html>
