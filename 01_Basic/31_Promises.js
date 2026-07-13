@@ -43,6 +43,60 @@ console.log(firstPromise);//Promise { <pending> }
 
 
 
+
+// ------------ CallBackHell slove in Promise -------------
+
+
+const checkInventory = (() => {
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('checking inventory');
+            reject(new Error("fail to cheack invertoy"));
+        }, 2000);
+    })
+    return promise
+})
+
+const checkOrder = (() => {
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('creating a order');
+            resolve();
+        }, 2000);
+    })
+    return promise
+})
+
+const chargingPayment = (() => {
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('charing the payment');
+            resolve();
+        }, 2000);
+    })
+    return promise
+})
+
+const sendInvoice = (() => {
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('Send invoice');
+            resolve();
+        }, 2000);
+    })
+    return promise
+})
+
+checkInventory()    
+.then(checkOrder)
+.then(chargingPayment)
+.then(sendInvoice)
+.catch((err)=>{
+    console.log("error found");
+})
+
+
+
 const promiseOne = new Promise((resolve, reject, onemsg) => {
     setTimeout(() => {
         console.log(`task is complete`);
@@ -219,16 +273,19 @@ const processPayment = ((amount) => {
                 return resolve(`Payment of ₹${amount} Successful!`)
             }, 1000);
         }
-        else{
-            return reject (`Invalid Amount! Transaction Failed.`)
+        else {
+            return reject(`Invalid Amount! Transaction Failed.`)
         }
     })
 })
 
 processPayment(100)
-.then((res)=>{
-    console.log(res);
-})
-.catch((err)=>{
-console.log(err );
-})
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+
+
+
