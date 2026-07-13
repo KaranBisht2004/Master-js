@@ -1,3 +1,91 @@
+// what is Synchronous 
+// Jab tak ek line ka kaam poora nahi hota, tab tak code aage nahi badhta. Pura program wahi ruk jata hai (Isse Blocking kehte hain).
+
+
+function data() { // this is synchronous code
+    console.log('1 console.log')
+    console.log('2 console.log')
+    console.log('3 console.log')
+    console.log('4 console.log')
+    console.log('5 console.log')
+    console.log('6 console.log')
+}
+data()
+
+
+// what is Asynchronous
+//code ek bhaari kaam (jaise internet se data download karna) ko background me daal deta hai aur khud aage badh jata hai. Jab wo data download ho jata hai, toh ek notification (jise coding me Callback, Promise, ya Async/Await kehte hain) aata hai aur wo kaam poora ho jata hai. Isse aapka app ya website freeze nahi hoti (Isse Non-Blocking kehte hain).
+
+function asyncData() {  // this is Asynchronous code
+    console.log('1 console.log');
+    console.log('2 console.log');
+    // Yeh async kaam hai 
+    // 3000 ka matlab hai 3 seconds ka delay
+    setTimeout(() => {
+        console.log('3 console.log (Heavy task completed!)');
+    }, 3000);
+
+    console.log('4 console.log');
+    console.log('5 console.log');
+    console.log('6 console.log');
+}
+asyncData();
+
+
+// this callback hellllll
+const checkInventory = ((callback) => {
+    setTimeout(() => {
+        console.log('checking inventory');
+        callback()
+    }, 2000);
+})
+
+const checkOrder = ((callback) => {
+    setTimeout(() => {
+        console.log('creating a order');
+        const error = new Error("order creation failed.");
+        callback(error)
+    }, 1000)
+})
+
+const chargingPayment = ((callback) => {
+    setTimeout(() => {
+        console.log('charing the payment');
+        let error = null
+        let chargeAmount = 100
+        callback(error , chargeAmount)
+    }, 2000)
+})
+
+const sendInvoice = ((callback) => {
+    setTimeout(() => {
+        console.log('Sending invocie');
+        callback()
+    }, 1000);
+})
+
+const main = (() => {
+    checkInventory(() => {
+        checkOrder((error) => {
+            if (error) {
+                console.log(error);
+            }
+            chargingPayment((error , chargeAmount) => {
+                if(error){
+                    console.log("heanding error");
+                    return;
+                }
+                console.log("charge Amount",chargeAmount);
+                sendInvoice(() => {
+                    console.log("all done");// this callback hell (pyramid of doom)
+                })
+            })
+        })
+    })
+    console.log('other requst processing....');
+})
+main()
+
 const inventory = [
     { id: 101, name: 'iPhone', stock: 3, price: 1000 },
     { id: 102, name: 'Samsung', stock: 0, price: 800 }
