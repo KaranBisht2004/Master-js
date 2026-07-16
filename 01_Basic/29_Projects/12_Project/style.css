@@ -1,0 +1,584 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background-color: #F2F8ED;
+    --box-color: #FFFFFF;
+    --heading-color1: #47A300;
+    --heading-color2: #61481C;
+    --text-color: #000000;
+    --error-color: #E74C3C;
+    --muted-text-color1: #555555;
+    --muted-text-color2: #8F8F8F;
+    --progress-bg: #E9F2E2;
+    --progress-fill: #47A300;
+    --border-color: #D0D0D0;
+    --checked-bg: #F5FAF0;
+    --checked-border: #47A300;
+    --sun-color: #FED50D;
+    --heart-color: #E74C3C;
+    --heading-font-family: "Poppins", sans-serif;
+    --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 6px 28px rgba(0, 0, 0, 0.10);
+}
+
+body {
+    background-color: var(--background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: var(--heading-font-family);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============ OUTER WRAPPER ============ */
+#div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* ============ MAIN HEADING ============ */
+#heading {
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+    font-size: 54px;
+    color: var(--heading-color1);
+    margin-top: 40px;
+    padding: 10px;
+    text-align: center;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+#heading>span {
+    font-style: oblique;
+    color: var(--heading-color2);
+    position: relative;
+}
+
+
+
+/* ============ MAIN CARD ============ */
+#mainDIV {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 660px;
+    padding: 8px 30px 30px 30px;
+    border-radius: 20px;
+    background-color: var(--box-color);
+    box-shadow: var(--shadow-light);
+    transition: box-shadow 0.4s ease;
+}
+
+#mainDIV:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* ============ TODAY HEADING + SUN ICON ============ */
+#divHeading {
+    margin-top: 25px;
+    font-family: var(--heading-font-family);
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 34px;
+    display: flex;
+    align-items: center;
+}
+
+#divHeading>i {
+    color: var(--sun-color);
+    margin: 0px 15px;
+    font-size: 30px;
+    animation: sunPulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(254, 213, 13, 0.4));
+}
+
+@keyframes sunPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+/* ============ SUBTITLE ============ */
+#raiseHeading {
+    margin-top: 25px;
+    font-family: var(--heading-font-family);
+    color: var(--muted-text-color1);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.2px;
+}
+
+/* ============ PROGRESS BAR ============ */
+#ProgressBar {
+    margin-top: 18px;
+    width: 100%;
+    height: 22px;
+    border-radius: 30px;
+    background-color: var(--progress-bg);
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+#progressFill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #5CB81A 0%, #47A300 50%, #3A8A00 100%);
+    border-radius: 30px;
+    transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+    position: relative;
+}
+
+/* Shimmer effect on the progress fill */
+#progressFill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.25) 40%,
+            rgba(255, 255, 255, 0.25) 60%,
+            transparent 100%);
+    border-radius: 30px;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(200%);
+    }
+}
+/* 
+/* ============ PROGRESS BAR STATES (via :has() selector) ============ */
+/* 1 goal checked → 33.33% */
+#mainDIV:has(#goal1:checked) #progressFill,
+#mainDIV:has(#goal2:checked) #progressFill,
+#mainDIV:has(#goal3:checked) #progressFill {
+    width: 33.33%;
+}
+
+/* 2 goals checked → 66.66% */
+#mainDIV:has(#goal1:checked):has(#goal2:checked) #progressFill,
+#mainDIV:has(#goal2:checked):has(#goal3:checked) #progressFill,
+#mainDIV:has(#goal1:checked):has(#goal3:checked) #progressFill {
+    width: 66.66%;
+}
+
+/* All 3 goals checked → 100% */
+#mainDIV:has(#goal1:checked):has(#goal2:checked):has(#goal3:checked) #progressFill {
+    width: 100%;
+    background: linear-gradient(90deg, #5CB81A 0%, #3A8A00 50%, #2D6E00 100%);
+} 
+
+/* ============ ERROR TEXT ============ */
+#errorText {
+    margin-top: 12px;
+    font-family: var(--heading-font-family);
+    color: var(--error-color);
+    font-weight: 500;
+    font-size: 13px;
+    display: none;
+
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.3px;
+    animation: fadeInShake 0.5s ease;
+}
+
+#errorText.visible {
+    display: flex;
+}
+
+#errorText::before {
+    content: '\f071';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 14px;
+}
+
+@keyframes fadeInShake {
+    0% {
+        opacity: 0;
+        transform: translateX(-6px);
+    }
+    25% {
+        transform: translateX(6px);
+    }
+    50% {
+        transform: translateX(-4px);
+    }
+    75% {
+        transform: translateX(4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ============ GOALS FORM ============ */
+#goalsForm {
+    margin-top: 5px;
+}
+
+/* ============ GOAL INPUT ROW ============ */
+.inputDiv {
+    width: 100%;
+    border: 2px solid var(--border-color);
+    margin-top: 22px;
+    padding: 18px 22px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s ease;
+    background-color: #FEFEFE;
+    cursor: default;
+    position: relative;
+}
+
+.inputDiv:hover {
+    border-color: #B0B0B0;
+    background-color: #FCFCFC;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Checked state for the entire row */
+.inputDiv:has(.goal-checkbox:checked) {
+    border-color: var(--checked-border);
+    background-color: var(--checked-bg);
+    box-shadow: 0 2px 8px rgba(71, 163, 0, 0.08);
+}
+
+.inputDiv:has(.goal-checkbox:checked):hover {
+    border-color: #3A8A00;
+    box-shadow: 0 4px 16px rgba(71, 163, 0, 0.14);
+}
+
+/* ============ HIDDEN NATIVE CHECKBOX ============ */
+.goal-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+/* ============ CUSTOM CIRCLE CHECKBOX ============ */
+.custom-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    border: 2.5px solid #C0C0C0;
+    background-color: #FAFAFA;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+    flex-shrink: 0;
+}
+
+.custom-circle:hover {
+    border-color: #999999;
+    background-color: #F0F0F0;
+    transform: scale(1.08);
+    box-shadow: 0 0 0 6px rgba(71, 163, 0, 0.08);
+}
+
+.custom-circle:active {
+    transform: scale(0.94);
+    transition: transform 0.1s ease;
+}
+
+/* Checkmark (hidden by default) */
+.custom-circle::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2.5px 2.5px 0;
+    transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    opacity: 0;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+}
+
+/* Checked state for the custom circle */
+.goal-checkbox:checked+.custom-circle {
+    background-color: var(--checked-border);
+    border-color: var(--checked-border);
+    box-shadow: 0 0 0 4px rgba(71, 163, 0, 0.15);
+}
+
+.goal-checkbox:checked+.custom-circle::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+}
+
+.goal-checkbox:checked+.custom-circle:hover {
+    background-color: #3A8A00;
+    border-color: #3A8A00;
+    box-shadow: 0 0 0 8px rgba(71, 163, 0, 0.12);
+}
+
+/* ============ GOAL TEXT INPUT ============ */
+.goal-text {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 16px;
+    font-family: var(--heading-font-family);
+    color: var(--text-color);
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    transition: all 0.3s ease;
+    padding: 2px 0;
+}
+
+.goal-text::placeholder {
+    color: #B0B0B0;
+    font-weight: 400;
+    font-style: italic;
+    transition: color 0.3s ease;
+}
+
+.goal-text:focus::placeholder {
+    color: #D0D0D0;
+}
+
+/* When goal is checked, strikethrough the text */
+.goal-checkbox:checked~.goal-text {
+    text-decoration: line-through;
+    text-decoration-color: #6B9E3A;
+    text-decoration-thickness: 2px;
+    color: #6B8F4E;
+    font-weight: 400;
+    transition: all 0.35s ease;
+}
+
+/* Subtle bottom border on focus */
+.goal-text:focus {
+    outline: none;
+}
+
+/* Animated underline for the text input */
+.inputDiv::after {
+    content: '';
+    position: absolute;
+    bottom: 18px;
+    left: 66px;
+    right: 22px;
+    height: 2px;
+    background-color: var(--checked-border);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.inputDiv:focus-within::after {
+    transform: scaleX(1);
+}
+
+/* Hide the underline when checked (cleaner look) */
+.inputDiv:has(.goal-checkbox:checked)::after {
+    transform: scaleX(0);
+}
+
+/* ============ FOOTER / QUOTE SECTION ============ */
+#footerQuote {
+    margin-top: 32px;
+    padding-top: 22px;
+    border-top: 1.5px solid #EEEEEE;
+    text-align: center;
+}
+
+#quoteText {
+    font-family: var(--heading-font-family);
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--muted-text-color1);
+    font-style: italic;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+}
+
+#creditText {
+    margin-top: 8px;
+    font-family: var(--heading-font-family);
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--muted-text-color2);
+    letter-spacing: 0.2px;
+}
+
+#creditText>i {
+    color: var(--heart-color);
+    font-size: 13px;
+    animation: heartBeat 1.5s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes heartBeat {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scale(1.25);
+    }
+    30% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.2);
+    }
+    60% {
+        transform: scale(1);
+    }
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+@media screen and (max-width: 720px) {
+    #heading {
+        font-size: 38px;
+        margin-top: 20px;
+    }
+
+    #mainDIV {
+        padding: 8px 18px 22px 18px;
+        border-radius: 16px;
+    }
+
+    #divHeading {
+        font-size: 20px;
+    }
+
+    #divHeading>i {
+        font-size: 24px;
+        margin: 0px 10px;
+    }
+
+    #raiseHeading {
+        font-size: 13px;
+        margin-top: 18px;
+    }
+
+    #ProgressBar {
+        height: 18px;
+        margin-top: 14px;
+    }
+
+    .inputDiv {
+        padding: 14px 16px;
+        gap: 12px;
+        margin-top: 16px;
+        border-radius: 12px;
+    }
+
+    .custom-circle {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+    }
+
+    .goal-text {
+        font-size: 14px;
+    }
+
+    .inputDiv::after {
+        left: 52px;
+        right: 16px;
+        bottom: 14px;
+    }
+
+    #footerQuote {
+        margin-top: 24px;
+        padding-top: 16px;
+    }
+
+    #quoteText {
+        font-size: 13px;
+    }
+
+    #creditText {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    #heading {
+        font-size: 30px;
+    }
+
+    #mainDIV {
+        padding: 6px 12px 16px 12px;
+        border-radius: 12px;
+    }
+
+    #divHeading {
+        font-size: 17px;
+    }
+
+    #divHeading>i {
+        font-size: 20px;
+        margin: 0px 7px;
+    }
+
+    #raiseHeading {
+        font-size: 12px;
+    }
+
+    .inputDiv {
+        padding: 12px 12px;
+        gap: 10px;
+        margin-top: 12px;
+    }
+
+    .custom-circle {
+        width: 22px;
+        height: 22px;
+        min-width: 22px;
+    }
+
+    .goal-text {
+        font-size: 13px;
+    }
+
+    .inputDiv::after {
+        left: 44px;
+        right: 12px;
+        bottom: 12px;
+    }
+}
