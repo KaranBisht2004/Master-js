@@ -1,8 +1,6 @@
 
 // OBJECT-ORIENTED PROGRAMMING (OOP)
 
-
-
 function user(username, userage, userid) {
     this.username = username;
     this.userage = userage;
