@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+    <h1>DEBOUNCING</h1>
+    <input id="inputBOX" type="text" placeholder="Seach Anything......">
+
+    
+    <h1>THROTTLING</h1>
+    <button id="clike">clike me</button>
+
+
+    <script>
+
+        // THROTTLING ----------------------------------------------------------
+        /*
+          Throttling ka matlab hai — jese hamare paas ADD TO CART ka button hai, toh hum us par 
+           throttle lagayenge taaki baar-baar click karne se API par baar-baar call na jaye.
+          
+           Hum ek fixed time (jaise 2 seconds) set kar dete hain. Jab pehla click hoga, toh API call 
+           CHALI JAYEGI aur button lock ho jayega. 
+          
+           Ab us 2 seconds ke KHATAM HONE SE PEHLE agar user ne DUBAAR CLICK KIYA, toh woh naya 
+           click CANCEL ya RESET nahi karega, balki woh naya click IGNORE (drop) ho jayega. 
+           Agla click 2 seconds poore hone ke BAAD hi chalega.
+        */
+
+        let button = document.getElementById("clike")
+
+        const throttingAPIcall = () => {
+            console.log("Throtting API call");
+        }
+        let lastAPICall = 0;
+
+        button.addEventListener("click", () => {
+            let now = Date.now();
+            if ((now - lastAPICall) >= 1000) {
+                lastAPICall = now;
+                throttingAPIcall()
+            }
+        });
+
+    </script>
+
+
+
+    <script>
+        // DEBOUNCING ---------------------------------------------------------------
+        // Jab hum kisi website par kuch search karte hain, toh har ek letter type karne par
+        // baar-baar API call nahi hoti.
+        // Jaise hi hum TYPE KARNA BAND (pause) karte hain, 'setTimeout'
+        // poora hota  he  tabhi final value ke sath ek hi baar API call jati hai.
+
+        let input = document.getElementById("inputBOX")
+
+        let timer;
+
+        const apicall = () => {
+            console.log(input.value);
+        }
+
+        input.addEventListener("keydown", (e) => {
+
+            clearTimeout(timer);
+
+            timer = setTimeout(() => {
+                apicall()
+            }, 1000)
+
+        })
+
+
+    </script>
+</body>
+
+</html>
